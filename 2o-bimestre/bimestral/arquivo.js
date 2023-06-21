@@ -1,3 +1,5 @@
+// Programa para realizar um CRUD básico em um arquivo JSON
+
 const fs = require('fs');
 
 const dataFilePath = 'data.json';
@@ -82,3 +84,11 @@ console.log(isUpdated);
 // Excluir um item pelo ID
 const isDeleted = deleteItem(1);
 console.log(isDeleted);
+
+module.exports = {
+    createItem,
+    listItems,
+    getItemById,
+    updateItem,
+    deleteItem
+  };
