@@ -1,94 +1,73 @@
-// Programa para realizar um CRUD básico em um arquivo JSON
+class CRUD {
+  constructor() {
+    this.items = [];
+  }
 
-const fs = require('fs');
+  // Adicionar um item
+  createItem(item) {
+    this.items.push(item);
+  }
 
-const dataFilePath = 'data.json';
+  // Ler todos os itens
+  readItems() {
+    return this.items;
+  }
 
-// Função para ler o arquivo JSON
-function readData() {
-  try {
-    const jsonData = fs.readFileSync(dataFilePath, 'utf8');
-    return JSON.parse(jsonData);
-  } catch (error) {
-    return [];
+  // Ler item por indice
+  readItem(index) {
+    return this.items[index];
+  }
+
+  // Atualizar um item pelo índice
+  updateItem(index, updatedItem) {
+    if (index >= 0 && index < this.items.length) {
+      this.items[index] = updatedItem;
+      return true;
+    }
+    return false;
+  }
+
+  // Excluir um item pelo índice
+  deleteItem(index) {
+    if (index >= 0 && index < this.items.length) {
+      this.items.splice(index, 1);
+      return true;
+    }
+    return false;
   }
 }
 
-// Função para escrever os dados no arquivo JSON
-function writeData(data) {
-  const jsonData = JSON.stringify(data, null, 2);
-  fs.writeFileSync(dataFilePath, jsonData, 'utf8');
-}
+// Exemplo de uso do CRUD
 
-// Função para criar um novo item
-function createItem(item) {
-  const data = readData();
-  data.push(item);
-  writeData(data);
-}
+const crud = new CRUD();
 
-// Função para listar todos os itens
-function listItems() {
-  return readData();
-}
+// Adicionar itens
+crud.createItem("Item 1");
+crud.createItem("Item 2");
+crud.createItem("Item 3");
 
-// Função para buscar um item pelo ID
-function getItemById(id) {
-  const data = readData();
-  return data.find(item => item.id === id);
-}
+// Ler todos os itens
+const items = crud.readItems();
+console.log(items); // ['Item 1', 'Item 2', 'Item 3']
 
-// Função para atualizar um item pelo ID
-function updateItem(id, updatedItem) {
-  const data = readData();
-  const index = data.findIndex(item => item.id === id);
-  if (index !== -1) {
-    data[index] = { ...data[index], ...updatedItem };
-    writeData(data);
-    return true;
-  }
-  return false;
-}
+// Ler item por indice
+const item = crud.readItem(1);
+console.log(item); // Item 2
 
-// Função para excluir um item pelo ID
-function deleteItem(id) {
-  const data = readData();
-  const index = data.findIndex(item => item.id === id);
-  if (index !== -1) {
-    data.splice(index, 1);
-    writeData(data);
-    return true;
-  }
-  return false;
-}
+// Atualizar um item pelo índice
+const isUpdated = crud.updateItem(1, "Item Atualizado");
+console.log(isUpdated); // true
 
-// Exemplo de uso:
+// Ler todos os itens novamente
+const updatedItems = crud.readItems();
+console.log(updatedItems); // ['Item 1', 'Item Atualizado', 'Item 3']
 
-// Criar um novo item
-const newItem = { id: 1, name: 'Item 1' };
-createItem(newItem);
+// Excluir um item pelo índice
+const isDeleted = crud.deleteItem(2);
+console.log(isDeleted); // true
 
-// Listar todos os itens
-const allItems = listItems();
-console.log(allItems);
+// Ler todos os itens novamente
+const remainingItems = crud.readItems();
+console.log(remainingItems); // ['Item 1', 'Item Atualizado']
 
-// Buscar um item pelo ID
-const item = getItemById(1);
-console.log(item);
-
-// Atualizar um item pelo ID
-const updatedItem = { name: 'Item Atualizado' };
-const isUpdated = updateItem(1, updatedItem);
-console.log(isUpdated);
-
-// Excluir um item pelo ID
-const isDeleted = deleteItem(1);
-console.log(isDeleted);
-
-module.exports = {
-    createItem,
-    listItems,
-    getItemById,
-    updateItem,
-    deleteItem
-  };
+module.exports = {CRUD}

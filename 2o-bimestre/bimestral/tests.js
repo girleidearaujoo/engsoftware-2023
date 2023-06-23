@@ -1,11 +1,7 @@
 const assert = require('assert');
 
 const {
-    createItem,
-    listItems,
-    getItemById,
-    updateItem,
-    deleteItem
+    CRUD
   } = require('./arquivo'); // Importe as funções do programa CRUD
 
   
