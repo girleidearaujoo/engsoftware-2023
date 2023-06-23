@@ -68,3 +68,5 @@ console.log(isDeleted); // true
 // Ler todos os itens novamente
 const remainingItems = crud.readItems();
 console.log(remainingItems); // ['Item 1', 'Item Atualizado']
+
+module.exports = {CRUD}
