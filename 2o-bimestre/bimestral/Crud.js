@@ -13,6 +13,7 @@ class CRUD {
     return this.items;
   }
 
+  // Ler item por indice
   readItem(index) {
     return this.items[index];
   }
@@ -51,7 +52,7 @@ console.log(items); // ['Item 1', 'Item 2', 'Item 3']
 
 // Ler item por indice
 const item = crud.readItem(1);
-console.log(item);
+console.log(item); // Item 2
 
 // Atualizar um item pelo índice
 const isUpdated = crud.updateItem(1, "Item Atualizado");
