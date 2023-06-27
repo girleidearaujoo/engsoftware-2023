@@ -5,12 +5,14 @@
   "name": "bimestral",
   "version": "1.0.0",
   "main": "arquivo.js",
-  "devDependencies": {},
   "scripts": {
     "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
   "description": ""
 }
