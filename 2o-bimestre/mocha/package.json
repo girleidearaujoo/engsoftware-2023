@@ -1,7 +1,6 @@
 {
   "name": "mocha",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
@@ -11,5 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "mocha": "^10.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }
